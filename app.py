@@ -40,7 +40,7 @@ def execute(query, params=()):
     db = get_db()
     cur = db.execute(query, params)
     db.commit()
-    return cur
+    return cur   # execute command
 
 
 def json_body():
