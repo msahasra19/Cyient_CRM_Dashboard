@@ -54,7 +54,7 @@ def init_db(app):
 
 
 def rows_to_dicts(rows):
-    """Convert sqlite3.Row list to list of dicts."""     #it sometimes takes lot of time to covert rows to list of dicts
+    """Convert sqlite3.Row list to list of dicts."""
     return [dict(r) for r in rows]
 
 

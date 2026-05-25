@@ -40,7 +40,7 @@ def execute(query, params=()):
     db = get_db()
     cur = db.execute(query, params)
     db.commit()
-    return cur   # execute command
+    return cur
 
 
 def json_body():
@@ -236,6 +236,16 @@ build_crud(
           "LEFT JOIN skills ON student_skills.skill_id = skills.id",
 )
 
+build_crud(
+    "volunteers", "volunteers",
+    fields=["name", "email", "phone", "organization", "expertise",
+            "area_of_interest", "availability", "project_id",
+            "hours_contributed", "joined_date", "status", "notes"],
+    search_fields=["volunteers.name", "email", "organization", "expertise", "area_of_interest"],
+    select_extra="projects.name AS project_name",
+    joins="LEFT JOIN projects ON volunteers.project_id = projects.id",
+)
+
 
 # ---------------------------------------------------------------------------
 # Master board / dashboard aggregates
@@ -259,6 +269,8 @@ def dashboard():
         "skills": db.execute("SELECT COUNT(*) FROM skills").fetchone()[0],
         "activities": db.execute("SELECT COUNT(*) FROM activities").fetchone()[0],
         "chapter_assignments": db.execute("SELECT COUNT(*) FROM chapter_assignments").fetchone()[0],
+        "volunteers": db.execute("SELECT COUNT(*) FROM volunteers").fetchone()[0],
+        "active_volunteers": db.execute("SELECT COUNT(*) FROM volunteers WHERE status='Active'").fetchone()[0],
     }
 
     # ----- Project status breakdown -----
@@ -330,6 +342,7 @@ def options(entity):
         "trainers": "SELECT id, name FROM trainers ORDER BY name",
         "students": "SELECT id, name FROM students ORDER BY name",
         "skills": "SELECT id, name FROM skills ORDER BY name",
+        "volunteers": "SELECT id, name FROM volunteers ORDER BY name",
     }
     if entity not in allowed:
         return jsonify({"error": "unknown entity"}), 400

@@ -13,6 +13,7 @@ const STATUS_OPTIONS = {
   assignment: ['Scheduled', 'In Progress', 'Completed', 'Cancelled'],
   attendance_student: ['Present', 'Absent', 'Late', 'Excused'],
   attendance_trainer: ['Present', 'Absent', 'Half-day', 'On Leave'],
+  volunteer: ['Active', 'Inactive', 'On Break'],
 };
 
 // Async option sources for FK selects.
@@ -224,6 +225,43 @@ const ENTITIES = {
     ],
   },
 
+  // ---------- VOLUNTEERS ----------
+  volunteers: {
+    title: 'Volunteer Management',
+    section: 'People',
+    entity: 'volunteers',
+    icon: 'heart',
+    columns: [
+      { key: 'id', label: '#', render: (r) => `<strong>#${r.id}</strong>` },
+      { key: 'name', label: 'Name' },
+      { key: 'email', label: 'Email' },
+      { key: 'organization', label: 'Organization' },
+      { key: 'expertise', label: 'Expertise' },
+      { key: 'area_of_interest', label: 'Interest', render: (r) => UI.badge(r.area_of_interest) },
+      { key: 'availability', label: 'Availability' },
+      { key: 'project_name', label: 'Project' },
+      { key: 'hours_contributed', label: 'Hours', render: (r) => UI.fmtNum(r.hours_contributed) },
+      { key: 'status', label: 'Status', render: (r) => UI.badge(r.status) },
+    ],
+    fields: [
+      { key: 'name', label: 'Full name', required: true, full: true },
+      { key: 'email', label: 'Email', type: 'email', required: true },
+      { key: 'phone', label: 'Phone' },
+      { key: 'organization', label: 'Organization / Company' },
+      { key: 'expertise', label: 'Expertise / Skills offered', full: true,
+        placeholder: 'e.g. Python, UI Design, Public Speaking' },
+      { key: 'area_of_interest', label: 'Area of interest', type: 'select', required: true,
+        options: ['Mentoring', 'Teaching', 'Workshop', 'Content', 'Outreach', 'CSR', 'Event Support'] },
+      { key: 'availability', label: 'Availability', type: 'select', required: true,
+        options: ['Weekdays', 'Weekends', 'Flexible', 'Project-based'] },
+      { key: 'project_id', label: 'Assigned project', type: 'select', options: opts('projects') },
+      { key: 'hours_contributed', label: 'Hours contributed', type: 'number', min: 0 },
+      { key: 'joined_date', label: 'Joined date', type: 'date' },
+      { key: 'status', label: 'Status', type: 'select', required: true, options: STATUS_OPTIONS.volunteer },
+      { key: 'notes', label: 'Notes', type: 'textarea', full: true },
+    ],
+  },
+
   // ---------- STUDENTS ----------
   students: {
     title: 'Student Management',
@@ -370,6 +408,7 @@ const NAV_ORDER = [
   { type: 'heading', label: 'People' },
   { type: 'item',    key: 'students',            label: 'Students',                    icon: 'users' },
   { type: 'item',    key: 'trainers',            label: 'Trainers',                    icon: 'user-tie' },
+  { type: 'item',    key: 'volunteers',          label: 'Volunteers',                  icon: 'heart' },
   { type: 'item',    key: 'administrators',      label: 'Administrators',              icon: 'shield' },
   { type: 'heading', label: 'Attendance' },
   { type: 'item',    key: 'student_attendance',  label: 'Student Attendance',          icon: 'check-circle' },
@@ -392,6 +431,7 @@ const ICONS = {
   'check-circle': '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
   clock:       '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
   star:        '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+  heart:       '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>',
   edit:        '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>',
   trash:       '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg>',
 };

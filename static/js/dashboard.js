@@ -38,6 +38,7 @@ const Dashboard = (() => {
         ${statCard('Total Projects', c.projects, `${c.active_projects} active`, 'briefcase', '')}
         ${statCard('Students', c.students, `${c.active_students} active`, 'users', 'purple')}
         ${statCard('Trainers', c.trainers, `${c.active_trainers} active`, 'user-tie', 'green')}
+        ${statCard('Volunteers', c.volunteers, `${c.active_volunteers} active`, 'heart', 'pink')}
         ${statCard('Courses', c.courses, `${c.modules} modules`, 'book', 'blue')}
         ${statCard('Chapters', c.chapters, `${c.chapter_assignments} assignments`, 'bookmark', 'orange')}
         ${statCard('Activities', c.activities, 'all categories', 'activity', 'pink')}

@@ -12,6 +12,7 @@ DROP TABLE IF EXISTS student_skills;
 DROP TABLE IF EXISTS skills;
 DROP TABLE IF EXISTS students;
 DROP TABLE IF EXISTS trainers;
+DROP TABLE IF EXISTS volunteers;
 DROP TABLE IF EXISTS chapters;
 DROP TABLE IF EXISTS modules;
 DROP TABLE IF EXISTS courses;
@@ -133,6 +134,27 @@ CREATE TABLE trainers (
 );
 
 -- =====================================================
+-- Volunteers
+-- =====================================================
+CREATE TABLE volunteers (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE,
+    phone TEXT,
+    organization TEXT,
+    expertise TEXT,                                 -- area of expertise / skills offered
+    area_of_interest TEXT DEFAULT 'Mentoring',      -- Mentoring / Teaching / Workshop / Content / Outreach / CSR / Event Support
+    availability TEXT DEFAULT 'Flexible',           -- Weekdays / Weekends / Flexible / Project-based
+    project_id INTEGER,
+    hours_contributed INTEGER DEFAULT 0,
+    joined_date TEXT DEFAULT (date('now')),
+    status TEXT NOT NULL DEFAULT 'Active',          -- Active / Inactive / On Break
+    notes TEXT,
+    created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE SET NULL
+);
+
+-- =====================================================
 -- Students
 -- =====================================================
 CREATE TABLE students (
@@ -222,3 +244,4 @@ CREATE INDEX idx_modules_course ON modules(course_id);
 CREATE INDEX idx_chapters_module ON chapters(module_id);
 CREATE INDEX idx_sa_date ON student_attendance(attendance_date);
 CREATE INDEX idx_ta_date ON trainer_attendance(attendance_date);
+CREATE INDEX idx_volunteers_project ON volunteers(project_id);
