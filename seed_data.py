@@ -8,7 +8,7 @@ def seed(conn):
 
     # -------- Administrators --------
     admins = [
-        ("Ramesh Kumar", "ramesh.kumar@cyientfoundation.org", "SuperAdmin", "read,write,delete,admin", "+91 9000000001", "Active"),
+        ("Pavan Kumar", "pavan.kumar@cyientfoundation.org", "SuperAdmin", "read,write,delete,admin", "+91 9963200231", "Active"),
         ("Priya Sharma", "priya.sharma@cyientfoundation.org", "Admin", "read,write", "+91 9000000002", "Active"),
         ("Vikram Singh", "vikram.singh@cyientfoundation.org", "Manager", "read,write", "+91 9000000003", "Active"),
         ("Sunita Rao", "sunita.rao@cyientfoundation.org", "Viewer", "read", "+91 9000000004", "Active"),
