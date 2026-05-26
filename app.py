@@ -239,11 +239,11 @@ build_crud(
 build_crud(
     "volunteers", "volunteers",
     fields=["name", "email", "phone", "organization", "expertise",
-            "area_of_interest", "availability", "project_id",
+            "area_of_interest", "availability", "activity_id",
             "hours_contributed", "joined_date", "status", "notes"],
     search_fields=["volunteers.name", "email", "organization", "expertise", "area_of_interest"],
-    select_extra="projects.name AS project_name",
-    joins="LEFT JOIN projects ON volunteers.project_id = projects.id",
+    select_extra="activities.name AS activity_name",
+    joins="LEFT JOIN activities ON volunteers.activity_id = activities.id",
 )
 
 
@@ -343,6 +343,7 @@ def options(entity):
         "students": "SELECT id, name FROM students ORDER BY name",
         "skills": "SELECT id, name FROM skills ORDER BY name",
         "volunteers": "SELECT id, name FROM volunteers ORDER BY name",
+        "activities": "SELECT id, name FROM activities ORDER BY name",
     }
     if entity not in allowed:
         return jsonify({"error": "unknown entity"}), 400

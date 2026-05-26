@@ -250,22 +250,22 @@ def seed(conn):
     volunteers = [
         ("Aarav Mehta",       "aarav.mehta@volunteer.org",     "+919812340001", "Infosys Foundation",  "Python, Data Science",       "Mentoring",      "Weekends",      1, 24, "2026-01-15", "Active",   "Mentors final-year ML capstone groups"),
         ("Diya Sharma",       "diya.sharma@volunteer.org",     "+919812340002", "TCS",                 "UI/UX, Figma",               "Teaching",       "Weekdays",      2, 36, "2026-01-22", "Active",   "Conducts design thinking workshops"),
-        ("Rohan Iyer",        "rohan.iyer@volunteer.org",      "+919812340003", "Wipro",               "Java, Spring Boot",          "Mentoring",      "Flexible",      1, 18, "2026-02-05", "Active",   "Backend mentor for student projects"),
-        ("Ananya Reddy",      "ananya.reddy@volunteer.org",    "+919812340004", "Independent",         "Public Speaking, Soft Skills","Workshop",      "Weekends",      3, 12, "2026-02-12", "Active",   "Runs communication-skills sessions"),
-        ("Kabir Singh",       "kabir.singh@volunteer.org",     "+919812340005", "Cyient",              "Embedded Systems, IoT",      "Teaching",       "Weekdays",      4, 28, "2026-02-20", "Active",   "Industry mentor for IoT module"),
+        ("Rohan Iyer",        "rohan.iyer@volunteer.org",      "+919812340003", "Wipro",               "Java, Spring Boot",          "Mentoring",      "Flexible",      3, 18, "2026-02-05", "Active",   "Backend mentor for student projects"),
+        ("Ananya Reddy",      "ananya.reddy@volunteer.org",    "+919812340004", "Independent",         "Public Speaking, Soft Skills","Workshop",      "Weekends",      4, 12, "2026-02-12", "Active",   "Runs communication-skills sessions"),
+        ("Kabir Singh",       "kabir.singh@volunteer.org",     "+919812340005", "Cyient",              "Embedded Systems, IoT",      "Teaching",       "Weekdays",      5, 28, "2026-02-20", "Active",   "Industry mentor for IoT module"),
         ("Meera Krishnan",    "meera.krishnan@volunteer.org",  "+919812340006", "Tech Mahindra",       "Content Writing, Curriculum","Content",        "Flexible",      None, 15, "2026-03-01", "Active",   "Reviews course material"),
-        ("Vihaan Patel",      "vihaan.patel@volunteer.org",    "+919812340007", "Accenture",           "Cloud, DevOps",              "Mentoring",      "Project-based", 2, 20, "2026-03-10", "Active",   "Azure mentor"),
-        ("Ishita Verma",      "ishita.verma@volunteer.org",    "+919812340008", "Microsoft",           "AI/ML, NLP",                 "Workshop",       "Weekends",      1, 32, "2026-03-18", "Active",   "AI/ML expert sessions"),
-        ("Arjun Nair",        "arjun.nair@volunteer.org",      "+919812340009", "Cognizant",           "Mobile Dev, Flutter",        "Teaching",       "Weekdays",      3, 16, "2026-03-25", "Active",   "Mobile app development trainer"),
+        ("Vihaan Patel",      "vihaan.patel@volunteer.org",    "+919812340007", "Accenture",           "Cloud, DevOps",              "Mentoring",      "Project-based", 6, 20, "2026-03-10", "Active",   "Azure mentor"),
+        ("Ishita Verma",      "ishita.verma@volunteer.org",    "+919812340008", "Microsoft",           "AI/ML, NLP",                 "Workshop",       "Weekends",      7, 32, "2026-03-18", "Active",   "AI/ML expert sessions"),
+        ("Arjun Nair",        "arjun.nair@volunteer.org",      "+919812340009", "Cognizant",           "Mobile Dev, Flutter",        "Teaching",       "Weekdays",      8, 16, "2026-03-25", "Active",   "Mobile app development trainer"),
         ("Sanvi Joshi",       "sanvi.joshi@volunteer.org",     "+919812340010", "Independent",         "Career Counseling",          "Outreach",       "Flexible",      None, 10, "2026-04-02", "Active",   "Placement preparation guidance"),
-        ("Aditya Kapoor",     "aditya.kapoor@volunteer.org",   "+919812340011", "Cyient",              "CSR Program Management",     "CSR",            "Weekdays",      4, 22, "2026-04-08", "Active",   "Cyient CSR coordinator"),
+        ("Aditya Kapoor",     "aditya.kapoor@volunteer.org",   "+919812340011", "Cyient",              "CSR Program Management",     "CSR",            "Weekdays",      1, 22, "2026-04-08", "Active",   "Cyient CSR coordinator"),
         ("Pooja Menon",       "pooja.menon@volunteer.org",     "+919812340012", "HCL",                 "Event Management",           "Event Support",  "Project-based", 2, 8,  "2026-04-15", "On Break", "Hackathon coordinator (on leave)"),
-        ("Karthik Rao",       "karthik.rao@volunteer.org",     "+919812340013", "Independent",         "Cybersecurity",              "Workshop",       "Weekends",      1, 14, "2026-04-22", "Active",   "Security awareness sessions"),
-        ("Riya Bhat",         "riya.bhat@volunteer.org",       "+919812340014", "Capgemini",           "Database, SQL",              "Teaching",       "Weekdays",      3, 26, "2026-04-30", "Active",   "DBMS module support"),
+        ("Karthik Rao",       "karthik.rao@volunteer.org",     "+919812340013", "Independent",         "Cybersecurity",              "Workshop",       "Weekends",      3, 14, "2026-04-22", "Active",   "Security awareness sessions"),
+        ("Riya Bhat",         "riya.bhat@volunteer.org",       "+919812340014", "Capgemini",           "Database, SQL",              "Teaching",       "Weekdays",      4, 26, "2026-04-30", "Active",   "DBMS module support"),
         ("Yash Agarwal",      "yash.agarwal@volunteer.org",    "+919812340015", "Independent",         "Entrepreneurship",           "Mentoring",      "Flexible",      None, 6,  "2026-05-05", "Inactive", "Recently transitioned out"),
     ]
     cur.executemany(
-        "INSERT INTO volunteers (name,email,phone,organization,expertise,area_of_interest,availability,project_id,hours_contributed,joined_date,status,notes) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+        "INSERT INTO volunteers (name,email,phone,organization,expertise,area_of_interest,availability,activity_id,hours_contributed,joined_date,status,notes) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
         volunteers,
     )
 
