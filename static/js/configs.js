@@ -13,7 +13,7 @@ const STATUS_OPTIONS = {
   assignment: ['Scheduled', 'In Progress', 'Completed', 'Cancelled'],
   attendance_student: ['Present', 'Absent', 'Late', 'Excused'],
   attendance_trainer: ['Present', 'Absent', 'Half-day', 'On Leave'],
-  volunteer: ['full day', 'half day', 'Not shown'],
+  volunteer: ['Active', 'Inactive', 'On Break'],
 };
 
 // Async option sources for FK selects.
