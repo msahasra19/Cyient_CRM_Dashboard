@@ -8,7 +8,7 @@ Master Board.
 Run: python app.py
 """
 import os
-from flask import Flask, jsonify, request, render_template, abort
+from flask import Flask, jsonify, request, render_template, abort     # importing flask from libraries 
 from database import get_db, close_db, init_db, rows_to_dicts, row_to_dict
 
 
@@ -40,7 +40,7 @@ def execute(query, params=()):
     db = get_db()
     cur = db.execute(query, params)
     db.commit()
-    return cur
+    return cur           # executing the database
 
 
 def json_body():
